@@ -1,6 +1,5 @@
 import { ShoppingBag, BadgeCheck, UserRound } from 'lucide-react';
-
-
+import Localizador from "../../Components/Maps";
 export default function Pesquisa() {
     return (
         <>
@@ -66,6 +65,10 @@ export default function Pesquisa() {
                         bottom-4
                         "
                     />
+                </div>
+
+                <div>
+                    <Localizador />
                 </div>
 
             </div>
