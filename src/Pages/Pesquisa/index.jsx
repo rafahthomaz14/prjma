@@ -20,7 +20,7 @@ export default function Pesquisa() {
                             </div>
 
                             {/* Bloco Compra segura - escondido no mobile */}
-                            <div className="flex items-center gap-2 hidden md:flex">
+                            <div className="flex items-center gap-2 hidden  md:flex">
                                 <BadgeCheck className="h-8 w-8 text-primary" />
                                 <div>
                                     <h1 className="text-lg font-bold">Compra segura</h1>
@@ -42,7 +42,7 @@ export default function Pesquisa() {
                 </header>
 
                 <div className="flex flex-col items-center gap-4 pb-24">
-                    <h1 className="text-3xl mt-5 font-bold text-center">
+                    <h1 className="text-2xl md:text-3xl md:mt-5 font-bold text-center">
                         Onde vamos pedir hoje?
                     </h1>
 
