@@ -4,7 +4,9 @@ export default function App() {
 
   return (
     <>
+
       <div>
+
         {/* Header */}
         <header className="bg-white sticky top-0 z-50">
           <div className="container mx-auto px-12 py-6">
@@ -57,6 +59,20 @@ export default function App() {
           </div>
 
         </main>
-      </div>    </>
+      </div>
+      <div className=''>
+        <img
+          src="jack.png"
+          alt="Jack"
+          className="fixed bottom-0 right-0 w-100 pointer-events-none"
+        />
+        <img
+          src="monster.png"
+          alt="monster"
+          className="fixed bottom-0 right-65 w-30 pointer-events-none"
+        />
+ 
+      </div>
+    </>
   )
 }
