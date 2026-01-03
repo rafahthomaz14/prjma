@@ -14,7 +14,7 @@ L.Icon.Default.mergeOptions({
     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
-/* ===== Ícone do usuário (azul) ===== */
+/* ===== Ícone do usuário ===== */
 const userIcon = new L.Icon({
   iconUrl:
     "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png",
@@ -24,16 +24,11 @@ const userIcon = new L.Icon({
   iconAnchor: [12, 41],
 });
 
-/* ===== Locais de Monte Alto ===== */
+/* ===== Locais ===== */
 const locais = [
   { id: 1, nome: "Distribuidora Farias", lat: -21.2618, lng: -48.4965 },
   { id: 2, nome: "Adega NK", lat: -21.2589, lng: -48.4981 },
-  {
-    id: 3,
-    nome: "Cravo & Canela Distribuidora",
-    lat: -21.2605,
-    lng: -48.4928,
-  },
+  { id: 3, nome: "Cravo & Canela Distribuidora", lat: -21.2605, lng: -48.4928 },
   { id: 4, nome: "Gallo's Distribuidora", lat: -21.2632, lng: -48.5012 },
   { id: 5, nome: "The Hall Pub", lat: -21.2596, lng: -48.4973 },
   { id: 6, nome: "Empório do Jota", lat: -21.2601, lng: -48.4949 },
@@ -41,7 +36,7 @@ const locais = [
 
 const RAIO_MAXIMO_KM = 3;
 
-/* ===== Cálculo de distância ===== */
+/* ===== Distância ===== */
 function calcularDistancia(lat1, lng1, lat2, lng2) {
   const R = 6371;
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
@@ -56,7 +51,7 @@ function calcularDistancia(lat1, lng1, lat2, lng2) {
   return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 }
 
-/* ===== Hook de localização ===== */
+/* ===== Localização ===== */
 function useUserLocation() {
   const [location, setLocation] = useState(null);
 
@@ -81,7 +76,7 @@ export default function Localizador() {
 
   if (!location) {
     return (
-      <div className="flex justify-center mt-10">
+      <div className="flex items-center justify-center h-[250px]">
         <p className="text-sm text-gray-600">Localizando você...</p>
       </div>
     );
@@ -101,7 +96,7 @@ export default function Localizador() {
     .sort((a, b) => a.distancia - b.distancia);
 
   return (
-    <div className="flex flex-col items-center gap-4 pb-24">
+    <div className="flex flex-col items-center gap-3">
       {/* MAPA */}
       <MapContainer
         center={[location.lat, location.lng]}
@@ -113,21 +108,17 @@ export default function Localizador() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* Usuário */}
         <Marker position={[location.lat, location.lng]} icon={userIcon}>
           <Popup>Você está aqui</Popup>
         </Marker>
 
-        {/* Locais próximos */}
         {locaisProximos.map((local) => (
           <Marker key={local.id} position={[local.lat, local.lng]}>
             <Popup>
-              <div className="text-sm">
-                <p className="font-semibold">{local.nome}</p>
-                <p className="text-xs text-gray-500">
-                  {local.distancia.toFixed(2)} km de você
-                </p>
-              </div>
+              <p className="font-semibold">{local.nome}</p>
+              <p className="text-xs text-gray-500">
+                {local.distancia.toFixed(2)} km
+              </p>
             </Popup>
           </Marker>
         ))}
@@ -135,11 +126,11 @@ export default function Localizador() {
 
       {/* LISTA */}
       <div className="w-[90%] max-w-[1000px]">
-        <h3 className="mb-2 text-lg font-bold">
+        <h3 className="text-lg font-bold mb-2">
           Distribuidoras perto de você
         </h3>
 
-        <div className="flex gap-3 overflow-x-auto pb-3">
+        <div className="flex gap-3 overflow-x-auto overflow-y-hidden pb-2 scroll-smooth">
           {locaisProximos.map((local, index) => (
             <div
               key={local.id}
@@ -154,15 +145,7 @@ export default function Localizador() {
                 {local.distancia.toFixed(2)} km de você
               </p>
 
-              {/* 
-                FUTURO:
-                Aqui depois você pode usar:
-                navigate(`/catalogo/${local.id}`)
-                ou abrir uma página de catálogo
-              */}
-              <button
-                className="mt-3 w-full rounded-lg bg-blue-600 py-2 text-sm font-bold text-white hover:bg-blue-700 active:scale-95"
-              >
+              <button className="mt-3 w-full rounded-lg bg-blue-600 py-2 text-sm font-bold text-white hover:bg-blue-700 active:scale-95">
                 Fazer pedido
               </button>
             </div>

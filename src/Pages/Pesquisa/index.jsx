@@ -41,8 +41,8 @@ export default function Pesquisa() {
                     </div>
                 </header>
 
-                <div className="flex flex-col items-center gap-4 pb-24">
-                    <h1 className="text-2xl md:text-3xl md:mt-5 font-bold text-center">
+                <div className="flex flex-col items-center gap-2 pb-7 lg:pb-10">
+                    <h1 className="text-2xl md:text-3xl md:mt-5 font-bold lg:mb-5 text-center">
                         Onde vamos pedir hoje?
                     </h1>
 
